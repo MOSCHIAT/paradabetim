@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>22ª Parada do Orgulho LGBTQIA+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-family:'Montserrat',sans-serif;
+    background:linear-gradient(135deg,#ff1493,#ff69b4,#ff2f92);
+    color:white;
+    overflow:hidden;
+}
+
+.container{
+    width:min(1200px,95%);
+    padding:2rem;
+}
+
+h1{
+    font-size:clamp(2.5rem,8vw,6rem);
+    font-weight:900;
+    line-height:1.05;
+    margin-bottom:1rem;
+}
+
+.data{
+    font-size:clamp(1.2rem,3vw,2rem);
+    font-weight:700;
+    margin-bottom:3rem;
+}
+
+.contador{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:1rem;
+}
+
+.box{
+    min-width:120px;
+    padding:1.2rem;
+    border-radius:20px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+.numero{
+    display:block;
+    font-size:clamp(2rem,5vw,4rem);
+    font-weight:900;
+}
+
+.label{
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:.9rem;
+}
+
+.frase{
+    margin-top:2rem;
+    font-size:clamp(1rem,2vw,1.3rem);
+    opacity:.95;
+}
+
+@media(max-width:600px){
+    .box{
+        min-width:90px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>22ª Parada do Orgulho LGBTQIA+</h1>
+
+    <div class="data">
+        26 de Julho de 2026
+    </div>
+
+    <div class="contador">
+        <div class="box">
+            <span id="dias" class="numero">00</span>
+            <span class="label">Dias</span>
+        </div>
+
+        <div class="box">
+            <span id="horas" class="numero">00</span>
+            <span class="label">Horas</span>
+        </div>
+
+        <div class="box">
+            <span id="minutos" class="numero">00</span>
+            <span class="label">Minutos</span>
+        </div>
+
+        <div class="box">
+            <span id="segundos" class="numero">00</span>
+            <span class="label">Segundos</span>
+        </div>
+    </div>
+
+    <div class="frase">
+        Orgulho, diversidade e resistência. 🌈
+    </div>
+
+</div>
+
+<script>
+
+const dataEvento = new Date("July 26, 2026 09:00:00").getTime();
+
+function atualizarContador(){
+
+    const agora = new Date().getTime();
+    const distancia = dataEvento - agora;
+
+    if(distancia <= 0){
+        document.querySelector(".contador").innerHTML =
+        "<h2>🎉 O EVENTO COMEÇOU! 🎉</h2>";
+        return;
+    }
+
+    const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+    document.getElementById("dias").textContent = dias;
+    document.getElementById("horas").textContent = horas.toString().padStart(2,'0');
+    document.getElementById("minutos").textContent = minutos.toString().padStart(2,'0');
+    document.getElementById("segundos").textContent = segundos.toString().padStart(2,'0');
+}
+
+atualizarContador();
+setInterval(atualizarContador,1000);
+
+</script>
+
+</body>
+</html>
